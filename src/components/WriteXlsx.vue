@@ -1,5 +1,5 @@
 <template lang='pug'>
-button(@click='_export') 导出为.xlsx文件
+    button(@click='_export') 导出为.xlsx文件
 </template>
 
 <script>
