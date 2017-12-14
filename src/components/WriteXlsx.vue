@@ -1,5 +1,5 @@
 <template lang='pug'>
-    button(@click='exportFile("sheet1","all")') 导出为.xlsx文件
+    button(@click='exportFile(data,"sheet1","all")') 导出为.xlsx文件
 </template>
 
 <script>
@@ -15,8 +15,8 @@ export default {
         }
     },
     methods: {
-        exportFile (sheetName, fileName) {
-            const ws = XLSX.utils.aoa_to_sheet(this.data)
+        exportFile (data, sheetName, fileName) {
+            const ws = XLSX.utils.aoa_to_sheet(data)
             const wb = XLSX.utils.book_new()
             XLSX.utils.book_append_sheet(wb, ws, sheetName)
             const wbout = XLSX.write(wb, {type: 'binary', bookType: 'xlsx'})
