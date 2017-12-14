@@ -1,5 +1,10 @@
 # js-xlsx_demo
 
+#### 项目目录下html文件夹，里的 writexlsx.htm 文件，可以直接用浏览器打开，会自动下载一个excel文件。
+
+#### 
+
+
 > A Vue.js project
 
 ## Build Setup
