@@ -15,13 +15,10 @@ export default {
     },
     methods: {
         _export (evt) {
-            /* convert state to workbook */
             const ws = XLSX.utils.aoa_to_sheet(this.data)
             const wb = XLSX.utils.book_new()
             XLSX.utils.book_append_sheet(wb, ws, 'SheetJS')
-            /* generate XLSX file */
             const wbout = XLSX.write(wb, {type: 'binary', bookType: 'xlsx'})
-            /* send to client */
             FileSaver.saveAs(new Blob([this.s2ab(wbout)], {type: 'application/octet-stream'}), 'sheetjs.xlsx')
         },
         s2ab (s) {
@@ -32,7 +29,6 @@ export default {
             }
             return buf
         }
-
     }
 }
 </script>
