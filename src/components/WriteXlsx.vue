@@ -1,10 +1,11 @@
 <template lang='pug'>
-    button(@click='_export') 导出为.xlsx文件
+    button(@click='exportFile("sheet1","all")') 导出为.xlsx文件
 </template>
 
 <script>
 import XLSX from 'xlsx'
 import FileSaver from 'file-saver'
+console.log(XLSX.utils)
 
 export default {
     name: '',
@@ -14,12 +15,12 @@ export default {
         }
     },
     methods: {
-        _export (evt) {
+        exportFile (sheetName, fileName) {
             const ws = XLSX.utils.aoa_to_sheet(this.data)
             const wb = XLSX.utils.book_new()
-            XLSX.utils.book_append_sheet(wb, ws, 'SheetJS')
+            XLSX.utils.book_append_sheet(wb, ws, sheetName)
             const wbout = XLSX.write(wb, {type: 'binary', bookType: 'xlsx'})
-            FileSaver.saveAs(new Blob([this.s2ab(wbout)], {type: 'application/octet-stream'}), 'sheetjs.xlsx')
+            FileSaver.saveAs(new Blob([this.s2ab(wbout)], {type: 'application/octet-stream'}), fileName + '.xlsx')
         },
         s2ab (s) {
             const buf = new ArrayBuffer(s.length)
