@@ -5,13 +5,12 @@
 <script>
 import XLSX from 'xlsx'
 import FileSaver from 'file-saver'
-console.log(XLSX.utils)
 
 export default {
     name: '',
     data () {
         return {
-            data: ['SheetJS'.split(''), '1234567'.split('')]
+            data: [[1, 2], [3, 4]]
         }
     },
     methods: {
@@ -20,6 +19,7 @@ export default {
             const wb = XLSX.utils.book_new()
             XLSX.utils.book_append_sheet(wb, ws, sheetName)
             const wbout = XLSX.write(wb, {type: 'binary', bookType: 'xlsx'})
+            console.log(new Blob([this.s2ab(wbout)], {type: 'application/octet-stream'}))
             FileSaver.saveAs(new Blob([this.s2ab(wbout)], {type: 'application/octet-stream'}), fileName + '.xlsx')
         },
         s2ab (s) {
